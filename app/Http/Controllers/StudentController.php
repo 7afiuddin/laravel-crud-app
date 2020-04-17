@@ -38,7 +38,14 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {  
+         $validatedata = $request -> validate([
+
+        'name' => 'required',
+        'email' => 'required',
+
+             ]);
+
         Student::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -80,6 +87,13 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student, $id)
     {
+        $this -> validate($request, [
+
+            'name' => 'required',
+            'email' => 'required',
+    
+                 ]);
+        
         $student = Student::find($id);
         $student->name = $request->name;
         $student->email = $request->email;

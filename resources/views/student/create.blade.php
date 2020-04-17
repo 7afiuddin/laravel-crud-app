@@ -13,6 +13,18 @@
         <div class="card-body">
            <div class="row">
                <div class="col-6 offset-3">
+               
+               @if($errors->any())
+               <div class="alert alert-danger">
+                  <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+               </div>
+               @endif
+
+
                @if(Session::has('success'))
                  <div class="alert alert-success">{{Session::get('success')}}</div>
                @endif
@@ -20,11 +32,11 @@
                 @csrf
                 <div class="form-group">
                             <label for="">Student Name</label>
-                            <input type="text" class="form-control" name="name" placeholder="Enter your name">
+                            <input type="text" class="form-control" name="name" placeholder="Enter your name" value="{{ old('name') }}">
                 </div>
                 <div class="form-group">
                             <label for="">Student Email</label>
-                            <input type="text" class="form-control" name="email" placeholder="Enter your email">
+                            <input type="text" class="form-control" name="email" placeholder="Enter your email" value="{{ old('email') }}">
                 </div>
                 <div class="form-group">
                             <button type="submit" class="btn btn-success">Submit Data</button>

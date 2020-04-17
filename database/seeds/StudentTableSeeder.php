@@ -13,7 +13,7 @@ class StudentTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        foreach(range(1,10) as $index){
+        foreach(range(1,5) as $index){
 
             DB::table('students')->insert([
                 'name' => Str::random(10),
